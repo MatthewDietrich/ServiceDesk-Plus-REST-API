@@ -1,7 +1,5 @@
 '''
 API wrapper for the ManageEngine ServiceDesk Plus v3 API
-
-Author: Matt Dietrich <mdietrich@ecisolutions.com>
 '''
 
 
