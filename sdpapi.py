@@ -45,7 +45,7 @@ class SDPAPI:
 
 
     def request_view(self, request_id):
-        return self.send('requests/' + request_id, 'GET')
+        return self.send(f'requests/{request_id}', 'GET')
 
     def request_view_all(self, list_info):
         data = {}
@@ -60,13 +60,13 @@ class SDPAPI:
     def request_edit(self, request_id, fields):
         data = {}
         data['request'] = fields
-        return self.send('requests/' + request_id, 'PUT', data)
+        return self.send('requests/{request_id}', 'PUT', data)
 
     def request_delete(self, request_id):
         return self.send(f'requests/{request_id}/move_to_trash', 'DELETE')
 
     def request_delete_from_trash(self, request_id):
-        return self.send('requests' + request_id, 'DELETE')
+        return self.send('requests/{request_id}', 'DELETE')
 
     def request_restore_from_trash(self, request_id):
         return self.send(f'requests/{request_id}/restore_from_trash', 'PUT')
