@@ -142,18 +142,16 @@ class SDPAPI:
         data = {'link_requests': [{'linked_request': {'id': link_request_id}}]}
         return self.send(f'requests/{request_id}/link_requests', 'DELETE', data)
 
-    def request_add_note(self, request_id, description, show_to_requester=False, notify_technician=False, mark_first_response=False, add_to_linked_requests=False):
-        data = {'request_note': {'description': description,
-                                 'show_to_requester': show_to_requester,
-                                 'notify_technician': notify_technician,
-                                 'mark_first_response': mark_first_response,
-                                 'add_to_linked_requests': add_to_linked_requests}}
+    def request_add_note(self, request_id, description, show_to_requester=False, mark_first_response=False, add_to_linked_requests=False):
+        data = {'note': {'description': description,
+                         'show_to_requester': show_to_requester,
+                         'mark_first_response': mark_first_response,
+                         'add_to_linked_requests': add_to_linked_requests}}
         return self.send(f'requests/{request_id}/notes', 'POST', data)
 
-    def request_edit_note(self, request_id, note_id, description, show_to_requester=False, notify_technician=False):
-        data = {'request_note': {'description': description,
-                                 'show_to_requester': show_to_requester,
-                                 'notify_technician': notify_technician}}
+    def request_edit_note(self, request_id, note_id, description, show_to_requester=False):
+        data = {'note': {'description': description,
+                         'show_to_requester': show_to_requester}}
         return self.send(f'requests/{request_id}/notes/{note_id}', 'PUT', data)
 
     def request_view_note(self, request_id, note_id):
