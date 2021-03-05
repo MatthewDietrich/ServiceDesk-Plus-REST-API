@@ -160,5 +160,40 @@ class SDPAPI:
     def request_delete_note(self, request_id, note_id):
         return self.send(f'requests/{request_id}/notes/{note_id}', 'DELETE')
 
+    def task_add(self, fields):
+        data = {}
+        data['task'] = fields
+        return self.send('tasks', 'POST', data)
+
+    def task_edit(self, task_id, fields):
+        data = {}
+        data['task'] = fields
+        return self.send(f'tasks/{task_id}', 'PUT', fields)
+
+    def task_delete(self, task_id):
+        return self.send(f'tasks/{task_id}', 'DELETE')
+
+    def task_view(self, task_id):
+        return self.send(f'tasks/{task_id}', 'GET')
+
+    def task_view_all(self, list_info):
+        data = {}
+        data['list_info'] = list_info
+        return self.send('tasks', 'GET', data)
+
+    def task_trigger(self, task_id):
+        return self.send(f'tasks/{task_id}/trigger', 'PUT')
+
+    def task_close(self, task_id):
+        return self.send(f'tasks/{task_id}/close', 'PUT')
+
+    def task_assign_owner(self, task_id, owner):
+        data = {'task': {'owner': {'name': owner}}}
+        return self.send(f'tasks/{task_id}/assign', 'PUT', data)
+
+    def task_mark_owner(self, task_id, marked_owner):
+        data = {'task': {'marked_owner': {'name': marked_owner}}}
+        return self.send(f'tasks/{task_id}/mark', 'PUT', data)
+
     def entity_view_history(self, entity, entity_id):
         return self.send(f'{entity}/{entity_id}/history', 'GET')
